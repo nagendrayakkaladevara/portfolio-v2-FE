@@ -2,7 +2,7 @@
 
 ## Edit the current portfolio
 
-Personal data: `src/data/portfolio.ts`. Change work history, projects, contact links, skills, recognition and education there. The avatar is `/images/headshot.png`, copied from the supplied image without alteration. The original resume remains `public/Sai-Nagendra-Resume-2025.pdf`; replace it and update the content module when a newer resume is ready. Review historical statements before treating them as current.
+Personal data: `src/data/portfolio.ts`. Change work history, projects, contact links, skills, recognition and education there. The avatar is `/images/headshot.png`, copied from the supplied image without alteration. The resume file is `public/Sai-Nagendra-Resume.pdf`. Replace that file and update `resume` in the content module when a newer copy is ready.
 
 Writing fixture (imported into the app; never fetched over HTTP): `src/data/posts.json` with `schemaVersion:1` and a `posts` array. Every post needs a stable UUID, kebab-case unique slug, title/excerpt, UTC dates, reading time, tags, optional coverImage, isDemo, Markdown body and media array. Use UUIDs with a valid version/variant (e.g. `crypto.randomUUID()`), not manually incremented zero UUIDs. Lists sort newest first. A future-dated fixture is not displayed.
 

@@ -82,6 +82,8 @@ h1 { font-size: 17px; font-weight: 500; line-height: 25.5px; color: var(--foregr
 .mark-contacts { color: #527c6c; }
 .mark-components { color: var(--foreground); }
 .mark-button { color: #cc7741; }
+.mark-invite { color: #cc7741; }
+.mark-timer { color: #7465c5; }
 .external-arrow { margin-left: auto; flex-shrink: 0; color: var(--border-hover); transition: color .2s, transform .2s; }
 a:hover .external-arrow { color: var(--muted); transform: translate(1px,-1px); }
 .project-description { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--muted); flex: 1; }
@@ -115,6 +117,7 @@ a:hover .external-arrow { color: var(--muted); transform: translate(1px,-1px); }
 .recognition-line { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; font-size: 13.5px; color: var(--text); }
 .recognition-line svg { color: var(--faint); }
 .award-detail { color: var(--faint); margin-left: 9px; font-size: 12px; }
+.recognition-item + .recognition-item { margin-top: 18px; }
 .recognition-description { margin: 8px 0 0; font-size: 13px; color: var(--faint); line-height: 1.65; }
 .education-heading { display: flex; justify-content: space-between; gap: 15px; color: var(--text); font-size: 14px; }
 .education-date { font-size: 12px; color: var(--faint); }

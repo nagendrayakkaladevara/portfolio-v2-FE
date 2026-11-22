@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { portfolio, type WorkProject } from './data/portfolio';
+import { portfolio, type WorkIcon, type WorkProject } from './data/portfolio';
 import { ProjectCard, ProjectMark } from './components/project-card';
 import { Section } from './components/section';
 import { useInterfaceSound } from './components/layout/site-layout';
@@ -15,6 +15,7 @@ import { PageMeta } from './components/layout/page-meta';
 
 
 const interestIcons = { code: Code2, book: BookOpen, activity: Activity };
+const workIcons: Record<WorkIcon, typeof Activity> = { graduate: GraduationCap, zap: Zap, activity: Activity, code: Code2 };
 
 export function HomePage() {
   const { enabled: soundEnabled, toggle: toggleSound, cue } = useInterfaceSound();
@@ -39,7 +40,7 @@ export function HomePage() {
   return (
     <MotionConfig reducedMotion="user">
       <main id="main" className="portfolio" tabIndex={-1}>
-        <PageMeta title="Sai Nagendra — Software Developer" description="Thoughtful interfaces. Useful products. Selected work, projects, and writing." />
+        <PageMeta title="Sai Nagendra — Software Engineer" description="Full-stack products, shared UI, and AI-assisted engineering. Selected work, projects, and writing." />
         <motion.section aria-label="Introduction" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <header className="intro-header">
             <Avatar className="profile-avatar"><AvatarImage src={portfolio.avatar} alt={portfolio.fullName} /><AvatarFallback>{portfolio.initials}</AvatarFallback></Avatar>
@@ -48,14 +49,14 @@ export function HomePage() {
           <p className="intro-copy">{portfolio.intro}</p>
           <div className="now-section">
             <h2 className="section-label">Now</h2>
-            <p className="now-copy">I’m a {portfolio.current.role} at <button className="inline-company" aria-expanded={company === 'current'} aria-controls="company-detail" onClick={() => toggleCompany('current')}>{portfolio.current.company}</button>, building interfaces and reusable components for Grid Solutions.</p>
+            <p className="now-copy">I’m a {portfolio.current.role} at <button className="inline-company" aria-expanded={company === 'current'} aria-controls="company-detail" onClick={() => toggleCompany('current')}>{portfolio.current.company}</button>, {portfolio.current.focus}.</p>
             <div className="current-links">
-              <button className="company-pill" onClick={() => toggleCompany('current')} aria-expanded={company === 'current'} aria-controls="company-detail"><span className="ge-mark">GE</span> Grid Solutions <ArrowUpRight size={11} /></button>
-              <a className="company-pill" href="#selected-work"><Code2 size={14} /> Frontend engineering <ArrowUpRight size={11} /></a>
-              <a className="company-pill" href="#toolkit"><BracesMark /> UI systems <ArrowUpRight size={11} /></a>
+              <button className="company-pill" onClick={() => toggleCompany('current')} aria-expanded={company === 'current'} aria-controls="company-detail"><span className="ge-mark">GE</span> Vernova <ArrowUpRight size={11} /></button>
+              <a className="company-pill" href="#selected-work"><Code2 size={14} /> Full-stack engineering <ArrowUpRight size={11} /></a>
+              <a className="company-pill" href="#toolkit"><BracesMark /> AI tools <ArrowUpRight size={11} /></a>
             </div>
             <p className="context-note">{portfolio.current.note}</p>
-            <p className="previous-copy">Before that, I built products from the ground up at <button className="inline-company" aria-expanded={company === 'previous'} aria-controls="company-detail" onClick={() => toggleCompany('previous')}>Prodapt</button>, across employee learning, onboarding, idea management, and leadership dashboards.</p>
+            <p className="previous-copy">Before that, I {portfolio.previous.focus} at <button className="inline-company" aria-expanded={company === 'previous'} aria-controls="company-detail" onClick={() => toggleCompany('previous')}>Prodapt</button>.</p>
             <div id="company-detail">
               <AnimatePresence initial={false} mode="wait">
                 {company && <motion.div key={company} className="company-disclosure" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduce ? 0 : 0.22 }}>
@@ -65,8 +66,8 @@ export function HomePage() {
             </div>
           </div>
           <nav id="contact" className="social-links" aria-label="Social profiles and resume">
-            {portfolio.socials.map((social, index) => <span className="social-item" key={social.label}>{social.label === 'Email' ? <button className="text-link" onClick={() => { setContactOpen(true); cue('open'); }}>{social.label}</button> : <a className="text-link" href={social.href} target="_blank" rel="noopener noreferrer">{social.label}</a>}{(index < portfolio.socials.length - 1 || portfolio.resume.href) && <span className="social-dot" aria-hidden="true">·</span>}</span>)}
-            {portfolio.resume.href && <a className="text-link" href={portfolio.resume.href} target="_blank" rel="noopener noreferrer" title="View resume">{portfolio.resume.label} <Download size={11} aria-hidden="true" /></a>}
+            {portfolio.socials.map((social) => <span className="social-item" key={social.label}>{social.label === 'Email' ? <button className="text-link" onClick={() => { setContactOpen(true); cue('open'); }}>{social.label}</button> : <a className="text-link" href={social.href} target="_blank" rel="noopener noreferrer">{social.label}</a>}<span className="social-dot" aria-hidden="true">·</span></span>)}
+            <a className="text-link" href={portfolio.resume.href} download={portfolio.resume.fileName} title={`Download resume — ${portfolio.resume.date}`}>{portfolio.resume.label} <Download size={11} aria-hidden="true" /></a>
           </nav>
         </motion.section>
 
@@ -77,11 +78,14 @@ export function HomePage() {
         </Section>
 
         <Section id="selected-work" title="Selected work">
-          <div className="work-list">{portfolio.workProjects.map(project => <button key={project.id} className="work-row" onClick={() => { setWork(project); cue('open'); }} aria-label={`Read about ${project.name}`}>
-            <span className={`work-thumbnail thumbnail-${project.id}`} aria-hidden="true">{project.id === 'university' ? <GraduationCap size={15} /> : project.id === 'cii' ? <Zap size={14} /> : project.id === 'onboarding' ? <span>30</span> : <Activity size={14} />}</span>
+          <div className="work-list">{portfolio.workProjects.map(project => {
+            const Icon = workIcons[project.icon];
+            return <button key={project.id} className="work-row" onClick={() => { setWork(project); cue('open'); }} aria-label={`Read about ${project.name}`}>
+            <span className={`work-thumbnail${project.tone ? ` thumbnail-${project.tone}` : ''}`} aria-hidden="true"><Icon size={14} /></span>
             <span className="work-name">{project.name}</span><span className="work-description">{project.shortDescription}</span><span className="work-category">{project.category}</span>
-          </button>)}</div>
-          <p className="section-note">Built during my time at Prodapt Solutions.</p>
+          </button>;
+          })}</div>
+          <p className="section-note">{portfolio.workNote}</p>
         </Section>
 
         <Section id="toolkit" title="Toolkit">
@@ -90,8 +94,12 @@ export function HomePage() {
 
         <RecentWriting />
 
+        <Section id="courses" title="Courses">
+          {portfolio.courses.map(course => <div className="recognition-item" key={course.title}><div className="recognition-line"><BookOpen size={15} aria-hidden="true" /><span>{course.title}</span><span className="award-detail">{course.detail}</span></div><p className="recognition-description">{course.description}</p></div>)}
+        </Section>
+
         <Section id="recognition" title="Recognition">
-          {portfolio.recognition.map(award => <div key={award.title}><div className="recognition-line"><Award size={15} aria-hidden="true" /><span>{award.title}</span><span className="award-detail">{award.detail}</span></div><p className="recognition-description">{award.description}</p></div>)}
+          {portfolio.recognition.map(award => <div className="recognition-item" key={award.title}><div className="recognition-line"><Award size={15} aria-hidden="true" /><span>{award.title}</span><span className="award-detail">{award.detail}</span></div><p className="recognition-description">{award.description}</p></div>)}
         </Section>
 
         <Section id="education" title="Education">
@@ -112,7 +120,7 @@ export function HomePage() {
       </main>
 
       <Dialog open={work !== null} onOpenChange={open => { if (!open) { setWork(null); cue('close'); } }}>
-        <DialogContent className="detail-dialog"><DialogHeader><p className="dialog-eyebrow">Selected work · Prodapt</p><DialogTitle>{work?.name}</DialogTitle><DialogDescription>{work?.shortDescription}</DialogDescription></DialogHeader><p className="dialog-body">{work?.description}</p><div className="stack-badges">{work?.stack.map(tech => <Badge variant="secondary" key={tech}>{tech}</Badge>)}</div><div className="impact"><span>Impact</span><p>{work?.impact}</p></div></DialogContent>
+        <DialogContent className="detail-dialog"><DialogHeader><p className="dialog-eyebrow">Selected work{work ? ` · ${work.organization}` : ''}</p><DialogTitle>{work?.name}</DialogTitle><DialogDescription>{work?.shortDescription}</DialogDescription></DialogHeader><p className="dialog-body">{work?.description}</p><div className="stack-badges">{work?.stack.map(tech => <Badge variant="secondary" key={tech}>{tech}</Badge>)}</div><div className="impact"><span>Impact</span><p>{work?.impact}</p></div></DialogContent>
       </Dialog>
 
       <Dialog open={contactOpen} onOpenChange={open => { setContactOpen(open); if (!open) { setCopyStatus('idle'); cue('close'); } }}>

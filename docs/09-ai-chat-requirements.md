@@ -102,10 +102,10 @@ event: start
 data: {"type":"start","messageId":"00000000-0000-4000-8000-000000000023","clientMessageId":"00000000-0000-4000-8000-000000000022"}
 
 event: delta
-data: {"type":"delta","text":"Nagendra is a Senior Software Developer at GE Vernova."}
+data: {"type":"delta","text":"Nagendra is a Software Engineer at GE Vernova."}
 
 event: done
-data: {"type":"done","messageId":"00000000-0000-4000-8000-000000000023","text":"Nagendra is a Senior Software Developer at GE Vernova.","sources":[{"id":"profile-public-v1","title":"About Nagendra","url":"/"}],"finishReason":"stop","knowledgeVersion":"public-2026-10-08-v1"}
+data: {"type":"done","messageId":"00000000-0000-4000-8000-000000000023","text":"Nagendra is a Software Engineer at GE Vernova.","sources":[{"id":"profile-public-v1","title":"About Nagendra","url":"/"}],"finishReason":"stop","knowledgeVersion":"public-2026-10-08-v1"}
 
 ```
 

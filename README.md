@@ -22,7 +22,7 @@ Writing imports `src/data/posts.json` directly into the application bundle. It m
 
 - `src/data/portfolio.ts`: biography, employment, projects, contact links, skills and education.
 - `public/images/headshot.png`: original supplied headshot.
-- `public/Sai-Nagendra-Resume-2025.pdf`: historical resume; review before public sharing.
+- `public/Sai-Nagendra-Resume.pdf`: current resume (November 2026).
 - `src/data/posts.json`: sample Markdown articles, dates, tags and image metadata.
 - `src/styles.css`: layout measurements, tokens and responsive behavior.
 

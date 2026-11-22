@@ -106,8 +106,8 @@ async function shell(path, title, description, noIndex = true) {
 }
 await shell(
   "/",
-  "Sai Nagendra — Software Developer",
-  "Sai Nagendra Yakkaladevara — Senior Software Developer. Building thoughtful interfaces and useful products with React, Angular, and TypeScript.",
+  "Sai Nagendra — Software Engineer",
+  "Sai Nagendra Yakkaladevara — Software Engineer. Full-stack products, shared UI, and AI-assisted engineering with Angular, .NET, and TypeScript.",
   false,
 );
 await shell(
