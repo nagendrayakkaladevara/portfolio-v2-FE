@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import SwaggerParser from '@apidevtools/swagger-parser';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { postListSchema, postResponseSchema } from '../src/features/writing/contracts';
 import { chatConfigSchema, chatEventSchema, chatSessionSchema } from '../src/features/chat/contracts';
 
 describe('future backend contract', () => {
   it('is a valid, internally resolved OpenAPI document', async () => {
-    const api = await SwaggerParser.validate(new URL('../docs/openapi.json', import.meta.url).pathname);
+    const api = await SwaggerParser.validate(fileURLToPath(new URL('../docs/openapi.json', import.meta.url)));
     expect(api.info.version).toBe('1.1.0');
     expect(Object.keys(api.paths || {})).toHaveLength(29);
   });
