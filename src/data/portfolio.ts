@@ -22,6 +22,7 @@ export interface WorkProject {
   organization: string;
   icon: WorkIcon;
   tone?: 'cii' | 'onboarding' | 'edocket';
+  products?: string[];
 }
 
 // Edit this file to update the portfolio without changing presentation components.
@@ -34,7 +35,7 @@ export const portfolio = {
   initials: 'SN',
   location: 'Hyderabad, India',
   email: 'nagendrayakkaladevara@gmail.com',
-  intro: 'I build software across the interface, the API, and the data behind it. Five years in, that work spans ReactJS, Angular, Node.js, ExpressJS, .NET, and SQL, with AI tools helping the team ship more consistently.',
+  intro: 'I build software across the interface, the API, and the data behind it. Five years in, that work spans ReactJS, Angular, Node.js, ExpressJS, .NET, and PostgreSQL, with AI tools helping the team ship more consistently.',
   current: {
     company: 'GE Vernova',
     role: 'Software Engineer',
@@ -62,18 +63,19 @@ export const portfolio = {
     { id: 'bus-ticketing', name: 'Bus Ticketing Tool', icon: 'message', href: 'https://samanviticketingtool.netlify.app/', description: 'Role-based ticket management, with dashboards, tracking, workflow, and user management.', highlights: [{ value: 'Role-based', label: 'ticket workflow' }, { value: 'Live', label: 'dashboards' }] },
     { id: 'invitation', name: 'Digital Wedding Invitation', icon: 'invite', href: 'https://sainagendra-weds-sushma.netlify.app/', description: 'An interactive digital invitation with an AI-powered chat built in.', highlights: [{ value: 'AI chat', label: 'built in' }, { value: 'Live', label: 'invitation' }] },
     { id: 'examflow', name: 'ExamFlow', icon: 'components', href: 'https://exam-flow-fe.vercel.app/', description: 'A college platform for examinations and assessment management.', highlights: [{ value: 'College', label: 'examinations' }, { value: 'Live', label: 'assessments' }] },
+    { id: 'bus-stop', name: 'Bus Stop Announcement App', icon: 'github', href: 'https://nagendrayakkaladevara.github.io/samanvi_stop_announcement_app_v2_walkthough/', description: 'This is an Android app developed using React Native and Expo.', highlights: [{ value: 'Android', label: 'React Native' }, { value: 'Expo', label: 'route audio' }] },
+    { id: 'pomodoro', name: 'Pomodoro', icon: 'timer', href: 'https://nagendrayakkaladevara.github.io/pomodoro/', description: 'A focus timer with tasks, session analytics, and ambient sounds.', highlights: [{ value: 'Focus', label: 'timer' }, { value: 'Tasks', label: 'and sounds' }] },
   ] satisfies Project[],
   smallProjects: [
-    { id: 'bus-stop', name: 'Bus Stop Announcement', icon: 'github', href: 'https://nagendrayakkaladevara.github.io/samanvi_stop_announcement_app_v2_walkthough/', description: 'A React Native app with route-based audio and offline playback.' },
-    { id: 'github-wrapped', name: 'GitHub Wrapped', icon: 'github', href: 'https://wrappedgithub.netlify.app/', description: 'A year in review for contributions, commits, and stars.' },
-    { id: 'contacts-admin', name: 'Contacts Admin', icon: 'contacts', href: 'https://wat-runningstaffcontacts-admin.netlify.app/', description: 'Admin tools to manage railway staff contacts.' },
-    { id: 'crypto-prices', name: 'Crypto Prices', icon: 'coins', href: 'https://cryptopriceapplication.netlify.app/', description: 'Live cryptocurrency prices and market trends.' },
+    { id: 'github-wrapped', name: 'GitHub Wrapped', icon: 'github', href: 'https://wrappedgithub.netlify.app/', description: 'A year of contributions and stars.' },
+    { id: 'contacts-admin', name: 'Contacts Admin', icon: 'contacts', href: 'https://wat-runningstaffcontacts-admin.netlify.app/', description: 'Admin for railway staff contacts.' },
+    { id: 'crypto-prices', name: 'Crypto Prices', icon: 'coins', href: 'https://cryptopriceapplication.netlify.app/', description: 'Live cryptocurrency prices.' },
   ] satisfies Project[],
   workProjects: [
     { id: 'call-taker', name: 'Call Taker', shortDescription: 'Features from the UI through the API', category: 'full stack', organization: 'GE Vernova', icon: 'activity', tone: 'edocket', description: 'A call-taker application where I deliver features end to end. I built REST APIs in a microservices architecture, led application-wide unit testing to improve coverage and code quality, and wrote AI agent instructions and skills so coding practices stay consistent.', stack: ['Angular', '.NET', 'C#', 'PostgreSQL'], impact: 'End-to-end features on a microservices API, with broader unit-test coverage across the application.' },
     { id: 'gx-ui', name: 'GX-UI Library', shortDescription: 'Shared components, clearer docs', category: 'ui systems', organization: 'GE Vernova', icon: 'code', tone: 'cii', description: 'A shared Angular and TypeScript UI library. I audited the documentation, set up standard templates, fixed library defects, built reusable components, and added AI-powered testing agents. Technical spikes turned into component enhancements.', stack: ['Angular', 'TypeScript'], impact: 'Clearer documentation and a more reliable set of shared components for teams building on GX-UI.' },
     { id: 'ai-tools', name: 'AI Engineering Tools', shortDescription: 'Less repetitive day-to-day work', category: 'automation', organization: 'GE Vernova', icon: 'zap', tone: 'onboarding', description: 'Internal AI tools for everyday engineering. One generates environment-specific host-file URLs. Another is wired into internal tools so the daily instance pipeline can start without a manual run.', stack: ['JavaScript', 'TypeScript', 'AI APIs'], impact: 'Automated host-file setup and the daily start of the instance pipeline.' },
-    { id: 'prodapt-products', name: 'Four products at Prodapt', shortDescription: 'Built from the ground up', category: 'product', organization: 'Prodapt', icon: 'graduate', description: 'Four major products designed and developed from the ground up with React, Express.js, and PostgreSQL. The work focused on efficiency. The Prodapt University project was recognized with a Spotlight Award in March 2024.', stack: ['React', 'Express.js', 'PostgreSQL'], impact: 'Significant efficiency improvements across the products, and a Spotlight Award for Prodapt University.' },
+    { id: 'prodapt-products', name: 'Four products at Prodapt', shortDescription: 'Built from the ground up', category: 'product', organization: 'Prodapt', icon: 'graduate', description: 'Four major products designed and developed from the ground up with React, Express.js, and PostgreSQL. The work focused on efficiency. The Prodapt University project was recognized with a Spotlight Award in March 2024.', products: ['Prodapt University Portal', '306090', 'CII', 'eDocket'], stack: ['React', 'Express.js', 'PostgreSQL'], impact: 'Significant efficiency improvements across the products, and a Spotlight Award for Prodapt University.' },
   ] satisfies WorkProject[],
   workNote: 'GE Vernova, and earlier product work at Prodapt Solutions.',
   skills: [

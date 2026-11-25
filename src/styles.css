@@ -91,13 +91,12 @@ a:hover .external-arrow { color: var(--muted); transform: translate(1px,-1px); }
 .project-highlights { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px; font-size: 12px; line-height: 18px; color: var(--faint); }
 .project-highlights strong { color: var(--text); font-weight: 500; }
 .project-badge { color: #a76a27; font-size: 9px; font-weight: 400; padding: 0 5px; background: #fffbeb; border-color: #f5e9c2; }
-.small-projects { margin-top: 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-.small-project { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); overflow: hidden; transition: border-color .2s, background .2s; }
-.small-project:hover { border-color: var(--border-hover); }
-.small-project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+.small-projects { margin-top: 24px; }
+.small-project { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--divider); font-size: 14px; }
+.small-project:last-child { border-bottom: 0; }
 .small-project .project-mark { width: 16px; height: 16px; flex-basis: 16px; }
-.small-project .external-arrow { margin-left: 0; }
-.small-project-name { font-size: 13px; font-weight: 500; line-height: 1.25; color: var(--foreground); }
+.small-project-name { font-weight: 500; white-space: nowrap; }
+.small-project-description { font-size: 13px; color: var(--faint); }
 .more-link { display: inline-flex; align-items: center; gap: 3px; margin-top: 16px; color: var(--faint); font-size: 13px; text-decoration: underline; text-decoration-color: var(--border-hover); text-underline-offset: 3px; }
 .more-link:hover { color: var(--foreground); }
 .work-row { width: 100%; display: flex; align-items: center; gap: 12px; padding: 10px 0; border: 0; border-bottom: 1px solid var(--divider); background: transparent; text-align: left; }
@@ -150,6 +149,10 @@ a:hover .external-arrow { color: var(--muted); transform: translate(1px,-1px); }
 .detail-dialog { max-height: calc(100dvh - 40px); overflow-y: auto; border-color: var(--border); border-radius: 14px; gap: 20px; }
 .dialog-eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: 10px; color: var(--faint); margin-bottom: 4px; }
 .dialog-body { font-size: 14px; line-height: 1.75; color: var(--text); margin: 0; }
+.product-list { display: grid; gap: 8px; }
+.product-list>span { text-transform: uppercase; font-size: 10px; letter-spacing: .12em; color: var(--faint); }
+.product-list ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.product-list li { font-size: 13px; line-height: 1.45; color: var(--text); padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; }
 .stack-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .stack-badges [data-slot="badge"] { font-size: 11px; font-weight: 400; border: 1px solid var(--border); }
 .impact { padding-top: 16px; border-top: 1px solid var(--border); }
@@ -178,9 +181,8 @@ a[data-slot="button"][data-variant="default"] { color: var(--color-primary-foreg
   .interest-content>p { font-size: 13px; }
   .interest-number { left: 7px; }
   .interest-person { gap: 8px; font-size: 12px; }
-  .small-projects { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 118px; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
-  .small-project { aspect-ratio: 1; width: 118px; min-height: 0; padding: 10px; overflow: hidden; }
-  .small-project-name { font-size: 12px; }
+  .small-project { flex-wrap: wrap; column-gap: 10px; row-gap: 3px; }
+  .small-project-description { order: 4; flex-basis: 100%; padding-left: 26px; }
   .footer { margin-top: 64px; }
   .social-links, .social-item { column-gap: 12px; }
 }

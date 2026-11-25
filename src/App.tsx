@@ -73,7 +73,7 @@ export function HomePage() {
 
         <Section id="projects" title="Recent projects">
           <div className="project-grid">{portfolio.projects.map(project => <ProjectCard key={project.id} project={project} onActivate={() => cue('select')} />)}</div>
-          <div className="small-projects">{portfolio.smallProjects.map(project => <a className="small-project" key={project.id} href={project.href} target="_blank" rel="noopener noreferrer" onClick={() => cue('select')} aria-label={`${project.name}. ${project.description}`}><span className="small-project-top"><ProjectMark icon={project.icon} /><ArrowUpRight className="external-arrow" size={12} aria-hidden="true" /></span><span className="small-project-name">{project.name}</span></a>)}</div>
+          <div className="small-projects">{portfolio.smallProjects.map(project => <a className="small-project" key={project.id} href={project.href} target="_blank" rel="noopener noreferrer" onClick={() => cue('select')}><ProjectMark icon={project.icon} /><span className="small-project-name">{project.name}</span><span className="small-project-description">{project.description}</span><ArrowUpRight className="external-arrow" size={12} aria-hidden="true" /></a>)}</div>
           <a className="more-link" href={portfolio.socials[0].href} target="_blank" rel="noopener noreferrer">More on GitHub <ArrowRight size={13} aria-hidden="true" /></a>
         </Section>
 
@@ -120,7 +120,7 @@ export function HomePage() {
       </main>
 
       <Dialog open={work !== null} onOpenChange={open => { if (!open) { setWork(null); cue('close'); } }}>
-        <DialogContent className="detail-dialog"><DialogHeader><p className="dialog-eyebrow">Selected work{work ? ` · ${work.organization}` : ''}</p><DialogTitle>{work?.name}</DialogTitle><DialogDescription>{work?.shortDescription}</DialogDescription></DialogHeader><p className="dialog-body">{work?.description}</p><div className="stack-badges">{work?.stack.map(tech => <Badge variant="secondary" key={tech}>{tech}</Badge>)}</div><div className="impact"><span>Impact</span><p>{work?.impact}</p></div></DialogContent>
+        <DialogContent className="detail-dialog"><DialogHeader><p className="dialog-eyebrow">Selected work{work ? ` · ${work.organization}` : ''}</p><DialogTitle>{work?.name}</DialogTitle><DialogDescription>{work?.shortDescription}</DialogDescription></DialogHeader><p className="dialog-body">{work?.description}</p>{work?.products?.length ? <div className="product-list"><span>Products</span><ol>{work.products.map(name => <li key={name}>{name}</li>)}</ol></div> : null}<div className="stack-badges">{work?.stack.map(tech => <Badge variant="secondary" key={tech}>{tech}</Badge>)}</div><div className="impact"><span>Impact</span><p>{work?.impact}</p></div></DialogContent>
       </Dialog>
 
       <Dialog open={contactOpen} onOpenChange={open => { setContactOpen(open); if (!open) { setCopyStatus('idle'); cue('close'); } }}>
