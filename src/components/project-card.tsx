@@ -1,10 +1,10 @@
-import { ArrowUpRight, Braces, ContactRound, GitFork, Mail, MessageCircle, MousePointer2, Timer } from 'lucide-react';
+import { ArrowUpRight, Braces, Coins, ContactRound, GitFork, Mail, MessageCircle, MousePointer2, Timer } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { Project, ProjectIcon } from '../data/portfolio';
 
-const icons = { github: GitFork, message: MessageCircle, contacts: ContactRound, components: Braces, button: MousePointer2, invite: Mail, timer: Timer };
+const icons = { github: GitFork, message: MessageCircle, contacts: ContactRound, components: Braces, button: MousePointer2, invite: Mail, timer: Timer, coins: Coins };
 
 export function ProjectMark({ icon }: { icon: ProjectIcon }) {
   const Icon = icons[icon];

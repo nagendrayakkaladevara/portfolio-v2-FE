@@ -1,4 +1,4 @@
-export type ProjectIcon = 'github' | 'message' | 'contacts' | 'components' | 'button' | 'invite' | 'timer';
+export type ProjectIcon = 'github' | 'message' | 'contacts' | 'components' | 'button' | 'invite' | 'timer' | 'coins';
 export type WorkIcon = 'graduate' | 'zap' | 'activity' | 'code';
 
 export interface Project {
@@ -64,8 +64,10 @@ export const portfolio = {
     { id: 'examflow', name: 'ExamFlow', icon: 'components', href: 'https://exam-flow-fe.vercel.app/', description: 'A college platform for examinations and assessment management.', highlights: [{ value: 'College', label: 'examinations' }, { value: 'Live', label: 'assessments' }] },
   ] satisfies Project[],
   smallProjects: [
-    { id: 'bus-stop', name: 'Bus Stop Announcement', icon: 'github', href: 'https://github.com/nagendrayakkaladevara/samanvi_stop_announcement_app_v2', description: 'A React Native app with route-based audio and offline playback.' },
-    { id: 'pomodoro', name: 'Pomodoro', icon: 'timer', href: 'https://nagendrayakkaladevara.github.io/pomodoro/', description: 'A focus timer with tasks, session analytics, and ambient sounds.' },
+    { id: 'bus-stop', name: 'Bus Stop Announcement', icon: 'github', href: 'https://nagendrayakkaladevara.github.io/samanvi_stop_announcement_app_v2_walkthough/', description: 'A React Native app with route-based audio and offline playback.' },
+    { id: 'github-wrapped', name: 'GitHub Wrapped', icon: 'github', href: 'https://wrappedgithub.netlify.app/', description: 'A year in review for contributions, commits, and stars.' },
+    { id: 'contacts-admin', name: 'Contacts Admin', icon: 'contacts', href: 'https://wat-runningstaffcontacts-admin.netlify.app/', description: 'Admin tools to manage railway staff contacts.' },
+    { id: 'crypto-prices', name: 'Crypto Prices', icon: 'coins', href: 'https://cryptopriceapplication.netlify.app/', description: 'Live cryptocurrency prices and market trends.' },
   ] satisfies Project[],
   workProjects: [
     { id: 'call-taker', name: 'Call Taker', shortDescription: 'Features from the UI through the API', category: 'full stack', organization: 'GE Vernova', icon: 'activity', tone: 'edocket', description: 'A call-taker application where I deliver features end to end. I built REST APIs in a microservices architecture, led application-wide unit testing to improve coverage and code quality, and wrote AI agent instructions and skills so coding practices stay consistent.', stack: ['Angular', '.NET', 'C#', 'PostgreSQL'], impact: 'End-to-end features on a microservices API, with broader unit-test coverage across the application.' },

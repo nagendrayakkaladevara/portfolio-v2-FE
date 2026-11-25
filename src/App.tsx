@@ -73,7 +73,7 @@ export function HomePage() {
 
         <Section id="projects" title="Recent projects">
           <div className="project-grid">{portfolio.projects.map(project => <ProjectCard key={project.id} project={project} onActivate={() => cue('select')} />)}</div>
-          <div className="small-projects">{portfolio.smallProjects.map(project => <a className="small-project" key={project.id} href={project.href} target="_blank" rel="noopener noreferrer" onClick={() => cue('select')}><ProjectMark icon={project.icon} /><span className="small-project-name">{project.name}</span><span className="small-project-description">{project.description}</span><ArrowUpRight className="external-arrow" size={12} aria-hidden="true" /></a>)}</div>
+          <div className="small-projects">{portfolio.smallProjects.map(project => <a className="small-project" key={project.id} href={project.href} target="_blank" rel="noopener noreferrer" onClick={() => cue('select')} aria-label={`${project.name}. ${project.description}`}><span className="small-project-top"><ProjectMark icon={project.icon} /><ArrowUpRight className="external-arrow" size={12} aria-hidden="true" /></span><span className="small-project-name">{project.name}</span></a>)}</div>
           <a className="more-link" href={portfolio.socials[0].href} target="_blank" rel="noopener noreferrer">More on GitHub <ArrowRight size={13} aria-hidden="true" /></a>
         </Section>
 
