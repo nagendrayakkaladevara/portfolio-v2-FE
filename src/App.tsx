@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { portfolio, type WorkIcon, type WorkProject } from './data/portfolio';
+import { contactGmailComposeHref, contactMailtoHref, portfolio, type WorkIcon, type WorkProject } from './data/portfolio';
 import { ProjectCard, ProjectMark } from './components/project-card';
 import { Section } from './components/section';
 import { useInterfaceSound } from './components/layout/site-layout';
@@ -124,7 +124,7 @@ export function HomePage() {
       </Dialog>
 
       <Dialog open={contactOpen} onOpenChange={open => { setContactOpen(open); if (!open) { setCopyStatus('idle'); cue('close'); } }}>
-        <DialogContent className="detail-dialog contact-dialog"><DialogHeader><p className="dialog-eyebrow">Let’s connect</p><DialogTitle>A good conversation starts here.</DialogTitle><DialogDescription>Have an idea, a question, or just want to say hello?</DialogDescription></DialogHeader><a href={`mailto:${portfolio.email}`} className="contact-email">{portfolio.email}</a><div className="contact-actions"><Button asChild><a href={`mailto:${portfolio.email}`}><Mail size={15} /> Send an email</a></Button><Button variant="outline" onClick={copyEmail}>{copyStatus === 'copied' ? <Check size={15} /> : <Copy size={15} />}{copyStatus === 'copied' ? 'Copied' : 'Copy email'}</Button></div><p className="copy-feedback" role="status">{copyStatus === 'copied' ? 'Email address copied to clipboard.' : copyStatus === 'failed' ? 'Could not copy. Select the email address above to copy it manually.' : ''}</p></DialogContent>
+        <DialogContent className="detail-dialog contact-dialog"><DialogHeader><p className="dialog-eyebrow">Let’s connect</p><DialogTitle>A good conversation starts here.</DialogTitle><DialogDescription>Have an idea, a question, or just want to say hello?</DialogDescription></DialogHeader><a href={contactMailtoHref()} className="contact-email">{portfolio.email}</a><div className="contact-actions"><Button asChild className="contact-send-email"><a href={contactGmailComposeHref()} target="_blank" rel="noopener noreferrer"><Mail size={15} /> Send an email</a></Button><Button variant="outline" onClick={copyEmail}>{copyStatus === 'copied' ? <Check size={15} /> : <Copy size={15} />}{copyStatus === 'copied' ? 'Copied' : 'Copy email'}</Button></div><p className="copy-feedback" role="status">{copyStatus === 'copied' ? 'Email address copied to clipboard.' : copyStatus === 'failed' ? 'Could not copy. Select the email address above to copy it manually.' : ''}</p></DialogContent>
       </Dialog>
     </MotionConfig>
   );

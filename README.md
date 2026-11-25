@@ -5,7 +5,7 @@ React + TypeScript portfolio based on the measured layout of [kamran.fyi](https:
 
 ## Run locally
 
-Use Node 24 LTS and the pnpm version declared in package.json.
+Use Node22.12+ (or a compatible newer LTS) and the pnpm version declared in package.json.
 
 ```bash
 pnpm install --frozen-lockfile
@@ -16,23 +16,23 @@ pnpm build
 pnpm preview
 ```
 
-Writing imports `src/data/posts.json` directly into the application bundle. It makes no JSON fetch or API request in JSON mode; no backend or credentials are needed. The portable source ZIP contains a standard Vite config and does not require Sites. Deploy `dist/` to a static host with SPA routing; never rewrite API requests to HTML.
+Writing imports `src/data/posts.json` directly into the application bundle. It makes no JSON fetch or API request in JSON mode; no backend or credentials are needed. The portable source ZIP contains a standard Vite config and does not require Sites. The canonical hosted checkout retains its Sites build plugin. Deploy `dist/` to a static host with SPA routing; never rewrite API requests to HTML.
 
 ## Edit content
 
 - `src/data/portfolio.ts`: biography, employment, projects, contact links, skills and education.
-- `public/images/headshot.png`: original supplied headshot.
+- `public/images/headshot.png`: original user-supplied headshot, displayed with CSS cropping.
 - `public/Sai-Nagendra-Resume.pdf`: current resume (November 2026).
 - `src/data/posts.json`: sample Markdown articles, dates, tags and image metadata.
 - `src/styles.css`: layout measurements, tokens and responsive behavior.
 
 All fixture articles are illustrative and marked `isDemo:true`; they are not claims of previously published writing. Only remove this flag after replacing them with approved real articles. Generated RSS and sitemap exclude samples.
 
-Copy `env.example` to `.env.local` for public build-time configuration. `VITE_CONTENT_SOURCE=api` switches the Writing repository to `/api/v1` (or `VITE_API_BASE_URL`), without changing components. The implemented Express API lives in [portfolio-v2-BE](https://github.com/nagendrayakkaladevara/portfolio-v2-BE). Configure its Neon database, R2 storage, owner identity provider, and hosting before enabling API mode. HTTP failure does not silently fall back to samples. The profile currently remains a static module.
+Copy `env.example` to `.env.local` for public build-time configuration. `VITE_CONTENT_SOURCE=api` switches the Writing repository to `/api/v1` (or `VITE_API_BASE_URL`), without changing components. The API is specified but not implemented. HTTP failure does not silently fall back to samples. The profile currently remains a static module.
 
 ## Application specifications
 
-Start with [docs/README.md](docs/README.md). The package includes PRD, architecture/data model, measured design spec, backend requirements, OpenAPI3.0.3 with36 operations/58 schemas, concrete request/response examples, implementation phases, library choices, content/operations guide and verification report. The current backend uses Express + TypeScript, Neon PostgreSQL and Cloudflare R2. Earlier .NET specifications are historical roadmap material; the implemented contract is documented in the backend repository. The owner Studio is available at `/admin`; external services and live deployment still require configuration.
+Start with [docs/README.md](docs/README.md). The package includes PRD, architecture/data model, measured design spec, backend requirements, OpenAPI3.0.3 with36 operations/58 schemas, concrete request/response examples, implementation phases, library choices, content/operations guide and verification report. The proposed service is ASP.NET Core10 + PostgreSQL with Cloudflare R2 for private upload processing and public blog-image renditions. No backend, admin editor or R2 resources have been deployed.
 
 ## Architecture
 
@@ -49,7 +49,7 @@ python scripts/generate-api-spec.py
 python scripts/export-source.py
 ```
 
-Exports source and specification ZIPs to `public/`. Exports omit credentials, runtime data, hosting identity and build output. This repository is the portable frontend source; its build has no dependency on ChatGPT Sites.
+Exports source and specification ZIPs to `public/`. Exports omit credentials, runtime data, hosting identity and build output. The private hosted site retains its existing audience.
 
 Design reference: Kamran Ahmed’s portfolio. Personal content derives from the supplied resume/context; sample writing is original illustrative text. Dependencies retain their respective licenses.
 
@@ -57,24 +57,4 @@ Design reference: Kamran Ahmed’s portfolio. Personal content derives from the 
 
 A small CRT mascot stays in the bottom-right corner. Click it to open a clean chat window with starter questions, progressive replies, verified local source links, Stop, Retry and New chat. The demo is clearly labeled and uses only public portfolio facts. It does not call an AI provider.
 
-`src/data/chat.json` edits the welcome/questions; `VITE_CHAT_SOURCE=demo` is the default. `api` selects the future backend transport, which loads configuration and streams answers from `/api/v1/chat/...`. It never silently falls back to demo replies. The original backend roadmap includes anonymous sessions, grounded knowledge retrieval, SSE events, owner settings/reindexing, privacy, rate limits and budgets. Read [docs/09-ai-chat-requirements.md](docs/09-ai-chat-requirements.md) and the updated OpenAPI/examples.
-
-## Owner Studio
-
-Open `/admin` to manage drafts, publish/archive articles, inspect revision history,
-and upload images through the backend. Sign-in uses OIDC Authorization Code +
-PKCE. Set the public `VITE_OIDC_*` configuration in `env.example` and register
-`/admin/callback` with the identity provider. Never add a client secret to this app.
-
-The default build uses sample Writing data and explicit demo chat. Owner sign-in,
-image uploads and API content require the separately deployed backend. Live AI
-chat remains unavailable until its provider integration is implemented.
-
-## Source recovery
-
-Recovered from the existing portfolio Site source at commit
-`30fa239` and prepared as a standalone Vite project. Hosting identity,
-checkout-specific tools and previously generated ZIPs are excluded. Application
-source, original assets, specifications and existing tests are retained. This
-recovered project includes the supplied profile information, headshot and resume.
-Review these files before publishing the repository publicly.
+`src/data/chat.json` edits the welcome/questions; `VITE_CHAT_SOURCE=demo` is the default. `api` selects the future backend transport, which loads configuration and streams answers from `/api/v1/chat/...`. It never silently falls back to demo replies. The existing .NET backend plan now includes anonymous sessions, grounded knowledge retrieval, SSE events, owner settings/reindexing, privacy, rate limits and budgets. Read [docs/09-ai-chat-requirements.md](docs/09-ai-chat-requirements.md) and the updated OpenAPI/examples.

@@ -87,8 +87,8 @@ describe('safe article rendering', () => {
     expect(html).not.toContain('<script'); expect(html).not.toContain('javascript:'); expect(html).not.toContain('<h1'); expect(html).not.toContain('<img'); expect(html).toContain('Image unavailable');
   });
   it('renders declared images with dimensions and safe external links', () => {
-    const media = [{ id: 'test-image', url: '/images/test.png', alt: 'Test illustration', width: 1024, height: 1536, caption: null }];
-    const html = renderToStaticMarkup(<ArticleBody markdown={'![illustration](/images/test.png)\n\n[Link](https://example.com)'} media={media} />);
+    const media = fixture.posts[2].media;
+    const html = renderToStaticMarkup(<ArticleBody markdown={'![portrait](/images/headshot.png)\n\n[Link](https://example.com)'} media={media} />);
     expect(html).toContain('width="1024"'); expect(html).toContain('height="1536"'); expect(html).toContain('loading="lazy"'); expect(html).toContain('rel="noopener noreferrer"');
   });
 });

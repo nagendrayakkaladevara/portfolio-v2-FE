@@ -9,7 +9,7 @@ spec_output = root / 'public' / 'Sai-Nagendra-Portfolio-Specifications.zip'
 include = ['src', 'components/ui', 'lib/utils.ts', 'public/favicon.svg', 'public/favicon.ico', 'public/apple-touch-icon.png', 'public/mascots', 'public/licenses', 'public/images',
            'public/Sai-Nagendra-Resume-2025.pdf', 'README.md', 'index.html', 'docs', 'tests',
            'scripts/build-content.mjs', 'scripts/generate-api-spec.py', 'scripts/chat_api_spec.py', 'scripts/export-source.py',
-           'env.example', 'pnpm-workspace.yaml', 'vitest.config.ts', 'tsconfig.json', 'postcss.config.mjs', 'components.json', 'pnpm-lock.yaml']
+           'env.example', 'vitest.config.ts', 'tsconfig.json', 'postcss.config.mjs', 'components.json', 'pnpm-lock.yaml']
 portable_vite = '''import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';

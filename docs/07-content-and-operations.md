@@ -84,11 +84,3 @@ First implement and verify the documented public API and set `VITE_CONTENT_SOURC
 `src/data/chat.json` controls demo welcome text, starter questions and input limits. Demo facts are derived from the existing public `src/data/portfolio.ts`, not a second hidden biography. Set `VITE_CHAT_SOURCE=api` only when the endpoints in the chat addendum are live; the API supplies both UI configuration and answers. Sessions/transcripts remain browser memory only. New chat deletes the server conversation before clearing it in API mode. Refresh creates a new conversation; this release does not restore chat history.
 
 Keep provider secrets, model selection, knowledge policy and spend limits on the backend. The current deployment remains a demo with no AI provider calls or charges. After launch, investigate failed streams using trace/turn IDs and safe codes; never capture tokens or full conversations in ordinary request logs.
-
-## Implemented publishing Studio
-
-The `/admin` route now provides owner OIDC sign-in, article search and status filtering, draft creation, Markdown editing and preview, publication/archive controls, R2 image upload/insertion/cover selection, and version history. Owner routes use memory-only access tokens. Configure public `VITE_OIDC_*` values from `env.example` and the matching backend `AUTH_*` values. Register the exact `/admin/callback` redirect URI. Sign out clears the local Studio session, not the identity provider's global session. The backend enforces the immutable owner subject; hiding the route is not authorization.
-
-The companion Express backend implements `/api/v1/admin/session`, owner article listings and revision history. Its `docs/DEPLOYMENT.md` contains account configuration and release commands. Use `VITE_CONTENT_SOURCE=api` only after the API and real content are available. Public JSON mode stays available during setup; API failures never silently switch to sample content.
-
-Production builds in API mode fetch all published summaries from an absolute HTTPS `VITE_API_BASE_URL` to generate article metadata, RSS and sitemap. Republish the frontend after content changes to refresh those static files. Public article bodies continue loading from the API. The static host needs an SPA fallback for article and Studio detail URLs.

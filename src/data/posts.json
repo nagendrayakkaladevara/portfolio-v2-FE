@@ -55,15 +55,15 @@
       ],
       "coverImage": null,
       "isDemo": true,
-      "bodyMarkdown": "Uploading an image and publishing it are different actions. Treating them separately makes a small publishing system easier to reason about.\n\nThis is an illustrative article for the preview.\n\n## Upload privately\n\nThe backend reserves an asset and issues a short-lived upload URL. The browser sends the original to private storage. The upload URL does not become the article image URL.\n\n## Check before publishing\n\nThe server checks the actual file, reads its dimensions, removes metadata, and creates web-sized versions. Article metadata includes width, height, and a useful text alternative.\n\n![Portfolio interface illustration](/images/og-portfolio.png)\n\n## Publish a stable version\n\nAn article points to immutable public renditions after publication. Updating the draft should not change what readers see until the next version is published.\n\nThe illustration above demonstrates the image renderer. Future blog images will use a Cloudflare R2 custom domain.",
+      "bodyMarkdown": "Uploading an image and publishing it are different actions. Treating them separately makes a small publishing system easier to reason about.\n\nThis is an illustrative article for the preview.\n\n## Upload privately\n\nThe backend reserves an asset and issues a short-lived upload URL. The browser sends the original to private storage. The upload URL does not become the article image URL.\n\n## Check before publishing\n\nThe server checks the actual file, reads its dimensions, removes metadata, and creates web-sized versions. Article metadata includes width, height, and a useful text alternative.\n\n![Sai Nagendra portrait](/images/headshot.png)\n\n## Publish a stable version\n\nAn article points to immutable public renditions after publication. Updating the draft should not change what readers see until the next version is published.\n\nThe portrait above demonstrates the image renderer. Future blog images will use a Cloudflare R2 custom domain.",
       "media": [
         {
           "id": "00000000-0000-4000-8000-00000000005a",
-          "url": "/images/og-portfolio.png",
-          "alt": "Portfolio interface illustration",
-          "width": 1730,
-          "height": 909,
-          "caption": "Illustration used for this portfolio preview."
+          "url": "/images/headshot.png",
+          "alt": "Sai Nagendra wearing glasses and a navy blazer",
+          "width": 1024,
+          "height": 1536,
+          "caption": "Portrait used for this portfolio preview."
         }
       ]
     },
@@ -102,7 +102,7 @@
       ],
       "coverImage": null,
       "isDemo": true,
-      "bodyMarkdown": "A transition can explain where something went or show that a control responded. It should not become an obstacle to reading.\n\n## Keep movement small\n\nA subtle opacity transition is enough for much of a portfolio. Reserve larger movement for interactions where it explains a meaningful change.\n\n## Respect preferences\n\nUse the browser’s reduced-motion setting. Keep content available when animations are removed. Sound should also be optional and off until someone chooses it.\n\n## Test the quiet version\n\nThe interface should still make sense without animation or sound. Text, position, and state carry the core meaning.\n\nThis is sample writing, included to demonstrate the article layout.",
+      "bodyMarkdown": "A transition can explain where something went or show that a control responded. It should not become an obstacle to reading.\n\n## Keep movement small\n\nA subtle opacity transition is enough for much of a portfolio. Reserve larger movement for interactions where it explains a meaningful change.\n\n## Respect preferences\n\nUse the browser\u2019s reduced-motion setting. Keep content available when animations are removed. Sound should also be optional and off until someone chooses it.\n\n## Test the quiet version\n\nThe interface should still make sense without animation or sound. Text, position, and state carry the core meaning.\n\nThis is sample writing, included to demonstrate the article layout.",
       "media": []
     },
     {

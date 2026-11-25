@@ -34,6 +34,7 @@
     "components/ui/badge.tsx",
     "components/ui/avatar.tsx",
     "lib/utils.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "build/sites-vite-plugin.ts"
   ]
 }

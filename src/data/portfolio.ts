@@ -88,9 +88,40 @@ export const portfolio = {
   ],
   recognition: [{ title: 'Spotlight Award', detail: 'Prodapt · March 2024', description: 'Recognized for exceptional performance on the Prodapt University project.' }],
   education: { degree: 'Bachelor of Technology', institution: 'Gayatri Vidya Parishad College of Engineering', period: '2017–2021', detail: 'Autonomous · Engineering' },
+  contactMail: {
+    subject: 'Hello from your portfolio',
+    body: `Hi Sai,
+
+I came across your portfolio and would like to get in touch.
+
+`,
+  },
   interests: [
     { id: 'building', title: 'Always building', eyebrow: 'Side projects', text: 'I enjoy turning everyday problems into small, useful products. Side projects are where I experiment, learn, and follow an idea all the way through.', icon: 'code' },
     { id: 'learning', title: 'Always curious', eyebrow: 'Learning', text: 'There is always something new to understand. I like exploring technologies, following industry trends, and expanding what I can build.', icon: 'book' },
     { id: 'balance', title: 'Beyond the screen', eyebrow: 'A little balance', text: 'Away from code, I make time for fitness and keeping up with the world. A little movement and a fresh perspective help me come back with more focus.', icon: 'activity' },
   ],
 };
+
+/** Opens the default mail app with subject and body prefilled (`mailto:`). */
+export function contactMailtoHref(): string {
+  const { email, contactMail } = portfolio;
+  const query = new URLSearchParams({
+    subject: contactMail.subject,
+    body: contactMail.body,
+  });
+  return `mailto:${email}?${query.toString()}`;
+}
+
+/** Opens Gmail compose in the browser or Gmail app with subject and body prefilled. */
+export function contactGmailComposeHref(): string {
+  const { email, contactMail } = portfolio;
+  const params = new URLSearchParams({
+    view: 'cm',
+    fs: '1',
+    to: email,
+    su: contactMail.subject,
+    body: contactMail.body,
+  });
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
