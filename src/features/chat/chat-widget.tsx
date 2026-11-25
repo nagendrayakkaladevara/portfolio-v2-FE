@@ -7,6 +7,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, Dia
 import { useInterfaceSound } from '@/src/components/layout/site-layout';
 import { CrtMascot, CrtAvatar } from './mascot';
 import { usePortfolioChat } from './use-portfolio-chat';
+import { ChatMarkdown } from './chat-markdown';
 import { getChatBounds } from './viewport';
 
 export function ChatWidget() {
@@ -72,7 +73,9 @@ export function ChatWidget() {
         <div className="chat-conversation" ref={scrollRef} role="region" aria-label="Conversation" tabIndex={0} onScroll={() => { const el = scrollRef.current; if (el) stickToBottom.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80; }}>
           {chat.configQuery.isPending ? <p className="chat-loading" role="status">Getting ready…</p> : chat.configQuery.isError ? <div className="chat-unavailable" role="alert"><p>The AI Agent couldn’t connect.</p><button className="text-link" onClick={() => void chat.configQuery.refetch()}>Try again</button></div> : !config?.enabled ? <p className="chat-unavailable">The AI Agent is taking a short break. You can still explore the portfolio or get in touch directly.</p> : !chat.messages.length ? <div className="chat-welcome"><span className="chat-eyebrow">HELLO THERE</span><h3>Get to know<br /><span>Sai.</span></h3><p>{config.welcomeMessage}</p><div className="chat-suggestions">{config.suggestedQuestions.map(question => <button type="button" key={question} onClick={() => chooseQuestion(question)} disabled={chat.busy || chat.resetting}>{question}<ArrowUpRight size={13} aria-hidden="true" /></button>)}</div></div> : <ol className="chat-messages">{chat.messages.map(message => <li key={message.id} className={`chat-message chat-message-${message.role}`}>
             <span className="chat-message-author">{message.role === 'user' ? 'You' : 'AI Agent'}</span>
-            <div className="chat-message-text">{message.text || (message.status === 'streaming' ? <span className="chat-thinking" aria-label="Thinking"><span /><span /><span /></span> : message.status === 'stopped' ? 'Reply stopped.' : 'No reply received.')}</div>
+            <div className="chat-message-text">
+              {message.role === 'assistant' && message.text ? <ChatMarkdown markdown={message.text} streaming={message.status === 'streaming'} /> : message.role === 'user' ? message.text : message.status === 'streaming' ? <span className="chat-thinking" aria-label="Thinking"><span /><span /><span /></span> : message.status === 'stopped' ? 'Reply stopped.' : message.text ? <ChatMarkdown markdown={message.text} /> : 'No reply received.'}
+            </div>
             {message.sources.length > 0 && <div className="chat-sources" aria-label="Sources">{message.sources.map(source => <button key={source.id} type="button" onClick={() => followSource(source.url)}>{source.title}<ArrowUpRight size={11} aria-hidden="true" /></button>)}</div>}
             {message.status === 'stopped' && message.text && <span className="chat-message-note">Reply stopped</span>}
             {message.status === 'error' && message.text && <span className="chat-message-note">Incomplete reply</span>}

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { readChatStream, HttpChatClient } from '../src/features/chat/client';
+import { safeChatHref } from '../src/features/chat/chat-markdown';
 import { DemoChatClient, getDemoReply } from '../src/features/chat/demo';
 import { chatConfigSchema, chatEventSchema, chatSourceSchema } from '../src/features/chat/contracts';
 import { portfolio } from '../src/data/portfolio';
@@ -72,6 +73,15 @@ describe('SSE contract', () => {
     const body = new ReadableStream<Uint8Array>({ start() {} });
     const result = collect(readChatStream(body, controller.signal));
     controller.abort(); await expect(result).rejects.toMatchObject({ name: 'AbortError' });
+  });
+});
+
+describe('chat markdown safety', () => {
+  it('blocks script URLs and protocol-relative links', () => {
+    expect(safeChatHref('javascript:alert(1)')).toBeUndefined();
+    expect(safeChatHref('data:text/html,x')).toBeUndefined();
+    expect(safeChatHref('//evil.example')).toBeUndefined();
+    expect(safeChatHref('https://github.com/nagendrayakkaladevara')).toBe('https://github.com/nagendrayakkaladevara');
   });
 });
 
